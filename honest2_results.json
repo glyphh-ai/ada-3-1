@@ -1,0 +1,1452 @@
+[
+ {
+  "prompt": "Mara Jaramillo works as a",
+  "memory": " paramedic in Sofia. She has a patient who",
+  "alone": " consultant in a company that is trying to implement a",
+  "changed": true,
+  "lp_memory": -2.804158592224121,
+  "lp_alone": -1.3933208465576172,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "paramedic",
+   "Sofia"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Emeric Ellison works as a",
+  "memory": " welder in Tallinn. He has a job",
+  "alone": " consultant for a company that sells a product called \"",
+  "changed": true,
+  "lp_memory": -3.404854965209961,
+  "lp_alone": -1.5205513000488282,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "welder",
+   "Tallinn"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Fenna Novak works as a",
+  "memory": " roofer in Tunis. She is paid in",
+  "alone": " nurse in a primary care clinic. She is asked",
+  "changed": true,
+  "lp_memory": -3.560161018371582,
+  "lp_alone": -1.3819808959960938,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "roofer",
+   "Tunis"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Quentin Easton works as a",
+  "memory": " puppeteer in Manila. He has a 1",
+  "alone": " writer and a journalist, and he has a lot",
+  "changed": true,
+  "lp_memory": -3.2616159439086916,
+  "lp_alone": -1.8639093399047852,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "puppeteer",
+   "Manila"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Zelda Marchetti works as a",
+  "memory": " potter in Sofia. She has a 1",
+  "alone": " manager in a company that produces a product with a",
+  "changed": true,
+  "lp_memory": -3.438063049316406,
+  "lp_alone": -1.6308053970336913,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "potter",
+   "Sofia"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Leopold Kessler works as a",
+  "memory": " brewer in Kathmandu. He is known",
+  "alone": " consultant in a company that is trying to develop a",
+  "changed": true,
+  "lp_memory": -3.0952117919921873,
+  "lp_alone": -1.3315065383911133,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "brewer",
+   "Kathmandu"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Anders Kessler works as a",
+  "memory": " archivist in Tallinn. He is a member",
+  "alone": " consultant for a company that is trying to develop a",
+  "changed": true,
+  "lp_memory": -3.4376638412475584,
+  "lp_alone": -1.247419548034668,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "archivist",
+   "Tallinn"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Wendell Cardenas works as a",
+  "memory": " surveyor in Quito. He is asked to",
+  "alone": " consultant for a company that is trying to decide whether",
+  "changed": true,
+  "lp_memory": -2.729470443725586,
+  "lp_alone": -1.2034997940063477,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "surveyor",
+   "Quito"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Gideon Holloway works as a",
+  "memory": " paramedic in Kampala. He is a member",
+  "alone": " teacher in a school in the 19th",
+  "changed": true,
+  "lp_memory": -3.157424545288086,
+  "lp_alone": -1.3712034225463867,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "paramedic",
+   "Kampala"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Mara Brandt works as a",
+  "memory": " bookbinder in Manila. She has a book",
+  "alone": " consultant for a company that is trying to develop a",
+  "changed": true,
+  "lp_memory": -3.142301559448242,
+  "lp_alone": -1.265998649597168,
+  "test": "told",
+  "kind": "job",
+  "told": [
+   "bookbinder",
+   "Manila"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The mailbox is",
+  "memory": " black. The dog is black. The dog is",
+  "alone": " 10 meters long. The distance between the",
+  "changed": true,
+  "lp_memory": -1.854746437072754,
+  "lp_alone": -1.2520753860473632,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "black"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The teapot is",
+  "memory": " green. The teapot is green. The te",
+  "alone": " a large, well-maintained, and well",
+  "changed": true,
+  "lp_memory": -1.82427978515625,
+  "lp_alone": -1.854759979248047,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "green"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The notebook is",
+  "memory": " purple. The notebook is purple. The notebook is",
+  "alone": " a rectangle with a width of 12 cm",
+  "changed": true,
+  "lp_memory": -1.6737047195434571,
+  "lp_alone": -1.1570474624633789,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "purple"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The school bus is",
+  "memory": " purple. The bus is in a park. The",
+  "alone": " moving at a constant velocity, and the driver of",
+  "changed": true,
+  "lp_memory": -2.3359683990478515,
+  "lp_alone": -0.9590631484985351,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "purple"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The rocking chair is",
+  "memory": " brown. The chair is in a room with a",
+  "alone": " a classic example of a lever, and the chair",
+  "changed": true,
+  "lp_memory": -2.3333906173706054,
+  "lp_alone": -1.526296615600586,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "brown"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The garden fence is",
+  "memory": " red. The garden has a red flower in the",
+  "alone": " 100 meters long, and the garden",
+  "changed": true,
+  "lp_memory": -2.160333442687988,
+  "lp_alone": -0.9278160095214844,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "red"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The coffee mug is",
+  "memory": " turquoise. The coffee mug is a regular polygon.",
+  "alone": " filled with 100 gallons of water,",
+  "changed": true,
+  "lp_memory": -2.5864986419677733,
+  "lp_alone": -1.0470306396484375,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "turquoise"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The bedroom carpet is",
+  "memory": " white. The room is a rectangle. The room",
+  "alone": " 12 feet by 12 feet.",
+  "changed": true,
+  "lp_memory": -1.6929803848266602,
+  "lp_alone": -0.7244842529296875,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "white"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The old bicycle is",
+  "memory": " pink. The new one is blue. The old",
+  "alone": " 120 cm long, and the front",
+  "changed": true,
+  "lp_memory": -2.2085853576660157,
+  "lp_alone": -1.1168466567993165,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "pink"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The lampshade is",
+  "memory": " yellow. The lampshade is yellow. The lamp",
+  "alone": " a part of a lampshade that is made of",
+  "changed": true,
+  "lp_memory": -1.5756698608398438,
+  "lp_alone": -1.2795211791992187,
+  "test": "told",
+  "kind": "colour",
+  "told": [
+   "yellow"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My ferret's name is",
+  "memory": " Sprout. He's a mix of a black",
+  "alone": " Remy. Remy is a small, fluffy",
+  "changed": true,
+  "lp_memory": -1.9686897277832032,
+  "lp_alone": -1.4594772338867188,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Sprout"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My puppy's name is",
+  "memory": " Biscuit. He's been in the house",
+  "alone": " Max, and he's been in the dog park",
+  "changed": true,
+  "lp_memory": -1.6259276390075683,
+  "lp_alone": -1.2330363273620606,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Biscuit"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My goat's name is",
+  "memory": " Maple. Maple is a name that is easy to",
+  "alone": " Momo, and she's been in the barn",
+  "changed": true,
+  "lp_memory": -1.8694841384887695,
+  "lp_alone": -1.4784049987792969,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Maple"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My cat's name is",
+  "memory": " Juniper. She has a long hair and is",
+  "alone": " Momo, and she's been missing her favorite",
+  "changed": true,
+  "lp_memory": -2.4020682334899903,
+  "lp_alone": -1.4731614112854003,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Juniper"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My kitten's name is",
+  "memory": " Pepper. She's been in the house for a",
+  "alone": " Kiki, and she's been missing her favorite",
+  "changed": true,
+  "lp_memory": -1.8615352630615234,
+  "lp_alone": -1.4859270095825194,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Pepper"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My goldfish's name is",
+  "memory": " Mango. She has a tail that is 1",
+  "alone": " Lila, and she has a tail that's",
+  "changed": true,
+  "lp_memory": -2.2773229598999025,
+  "lp_alone": -1.2214372634887696,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Mango"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My horse's name is",
+  "memory": " Tofu. He has a large, round",
+  "alone": " \"Belle\" and she's been riding in",
+  "changed": true,
+  "lp_memory": -2.519678020477295,
+  "lp_alone": -1.704158878326416,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Tofu"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My parrot's name is",
+  "memory": " Pickle. He is a parrot who is",
+  "alone": " Kiki, and she's been in the house",
+  "changed": true,
+  "lp_memory": -1.8658363342285156,
+  "lp_alone": -1.315534782409668,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Pickle"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My dog's name is",
+  "memory": " Pepper. She's been in the house for a",
+  "alone": " Max, and he's been in the dog park",
+  "changed": true,
+  "lp_memory": -1.999481201171875,
+  "lp_alone": -1.2853952407836915,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Pepper"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "My rabbit's name is",
+  "memory": " Clover. She's a mix of a white and",
+  "alone": " Momo, and she's been in the house",
+  "changed": true,
+  "lp_memory": -2.285124588012695,
+  "lp_alone": -1.318594741821289,
+  "test": "told",
+  "kind": "pet",
+  "told": [
+   "Clover"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the cabin is",
+  "memory": " 5797. The password is ",
+  "alone": " 123456789",
+  "changed": true,
+  "lp_memory": -2.6768604278564454,
+  "lp_alone": -0.564556884765625,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "5797"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the boathouse is",
+  "memory": " 1612. How many possible ways",
+  "alone": " a sequence of 10 digits, where the",
+  "changed": true,
+  "lp_memory": -1.9863996505737305,
+  "lp_alone": -1.0196313858032227,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "1612"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the shed is",
+  "memory": " 7879. How many possible ways",
+  "alone": " a sequence of 10 characters, where each",
+  "changed": true,
+  "lp_memory": -1.990297508239746,
+  "lp_alone": -0.9643365859985351,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "7879"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the workshop is",
+  "memory": " 4423. How many possible ways",
+  "alone": " a sequence of 10 characters, where each",
+  "changed": true,
+  "lp_memory": -2.092517852783203,
+  "lp_alone": -0.9257143020629883,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "4423"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the studio is",
+  "memory": " 5885. How many possible ways",
+  "alone": " 123456789",
+  "changed": true,
+  "lp_memory": -2.200862503051758,
+  "lp_alone": -0.5217430114746093,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "5885"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the garage is",
+  "memory": " 9840. How many possible combinations",
+  "alone": " 123456789",
+  "changed": true,
+  "lp_memory": -2.435171699523926,
+  "lp_alone": -0.5297168731689453,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "9840"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the locker is",
+  "memory": " 4806. How many possible combinations",
+  "alone": " a sequence of 10 digits, where each",
+  "changed": true,
+  "lp_memory": -2.238216018676758,
+  "lp_alone": -0.8660730361938477,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "4806"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the cellar is",
+  "memory": " 7143. The password is ",
+  "alone": " a sequence of 10 digits, where the",
+  "changed": true,
+  "lp_memory": -2.670216178894043,
+  "lp_alone": -1.0629322052001953,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "7143"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the attic is",
+  "memory": " 6372. The number of possible",
+  "alone": " a sequence of 10 characters, where each",
+  "changed": true,
+  "lp_memory": -2.3244890213012694,
+  "lp_alone": -0.9946094512939453,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "6372"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The password for the barn is",
+  "memory": " 7431. How many possible combinations",
+  "alone": " 123456789",
+  "changed": true,
+  "lp_memory": -2.4303712844848633,
+  "lp_alone": -0.6085254669189453,
+  "test": "told",
+  "kind": "password",
+  "told": [
+   "7431"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Esme Cardenas's favorite food is",
+  "memory": " barley stew. What is the name of the food",
+  "alone": " a type of food that is popular in the country",
+  "changed": true,
+  "lp_memory": -2.81640625,
+  "lp_alone": -1.2894321441650392,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "barley stew"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Yusuf Ellison's favorite food is",
+  "memory": " roasted beets. He has 120",
+  "alone": " a pizza. He has a pizza with 1",
+  "changed": true,
+  "lp_memory": -2.5521339416503905,
+  "lp_alone": -1.4221151351928711,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "roasted beets"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Wendell Kowalczyk's favorite food is",
+  "memory": " mushroom soup. He has 12 mushrooms in",
+  "alone": " pizza. He has a pizza with a radius of",
+  "changed": true,
+  "lp_memory": -1.9083906173706056,
+  "lp_alone": -1.1598642349243165,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "mushroom soup"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Ines Brandt's favorite food is",
+  "memory": " fried plantain. She has 120",
+  "alone": " a type of food that is popular in the country",
+  "changed": true,
+  "lp_memory": -2.6772342681884767,
+  "lp_alone": -1.4654232025146485,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "fried plantain"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Fenna Rasmussen's favorite food is",
+  "memory": " rice pudding. She has 1200",
+  "alone": " a type of food that is popular in the food",
+  "changed": true,
+  "lp_memory": -2.2433282852172853,
+  "lp_alone": -1.4207588195800782,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "rice pudding"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Calla Sandoval's favorite food is",
+  "memory": " garlic bread. She has 12 slices of",
+  "alone": " a type of food that is popular in her hometown",
+  "changed": true,
+  "lp_memory": -1.7490219116210937,
+  "lp_alone": -1.1779075622558595,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "garlic bread"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Nadia Kessler's favorite food is",
+  "memory": " mushroom soup. She has 12 mushrooms in",
+  "alone": " pizza. She has a pizza shop that sells pizza",
+  "changed": true,
+  "lp_memory": -1.9415966033935548,
+  "lp_alone": -1.2414518356323243,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "mushroom soup"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Marisol Hartmann's favorite food is",
+  "memory": " smoked trout. She has 1200",
+  "alone": " a type of food that is popular in the food",
+  "changed": true,
+  "lp_memory": -2.344638442993164,
+  "lp_alone": -1.3775630950927735,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "smoked trout"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Vesna Okafor's favorite food is",
+  "memory": " barley stew. She has 1200",
+  "alone": " a pizza. She has 12 slices of",
+  "changed": true,
+  "lp_memory": -2.8155872344970705,
+  "lp_alone": -1.462971305847168,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "barley stew"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Dorian Lachance's favorite food is",
+  "memory": " rice pudding. He has 1200",
+  "alone": " a type of food that is popular in the food",
+  "changed": true,
+  "lp_memory": -2.2608837127685546,
+  "lp_alone": -1.493214225769043,
+  "test": "told",
+  "kind": "food",
+  "told": [
+   "rice pudding"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Muscat leaves from platform",
+  "memory": " 19. The train is moving at a",
+  "alone": " at 10:00 AM and takes",
+  "changed": true,
+  "lp_memory": -2.319902229309082,
+  "lp_alone": -0.7251146316528321,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "19"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Montevideo leaves from platform",
+  "memory": " 2. The train is going to go to",
+  "alone": " 1 at 10:00 AM",
+  "changed": true,
+  "lp_memory": -1.6889566421508788,
+  "lp_alone": -0.6089828491210938,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "2"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Lisbon leaves from platform",
+  "memory": " 15. The train is moving at a",
+  "alone": " A at 10:00 AM and",
+  "changed": true,
+  "lp_memory": -2.1144710540771485,
+  "lp_alone": -0.637483787536621,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "15"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Quito leaves from platform",
+  "memory": " 17.0 km from the starting point",
+  "alone": " 1 at 10:00 AM",
+  "changed": true,
+  "lp_memory": -1.7674396514892579,
+  "lp_alone": -0.6054817199707031,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "17"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Windhoek leaves from platform",
+  "memory": " 11. The train is moving at ",
+  "alone": " at 10:00 AM and takes",
+  "changed": true,
+  "lp_memory": -1.7813102722167968,
+  "lp_alone": -0.7405561447143555,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "11"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Rabat leaves from platform",
+  "memory": " 8.0 and takes 1 hour and",
+  "alone": " at 10:00 AM and takes",
+  "changed": true,
+  "lp_memory": -2.0391517639160157,
+  "lp_alone": -0.6578386306762696,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "8"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Santiago leaves from platform",
+  "memory": " 16. The train is moving at a",
+  "alone": " A at 10:00 AM and",
+  "changed": true,
+  "lp_memory": -2.3679298400878905,
+  "lp_alone": -0.7484373092651367,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "16"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Bogota leaves from platform",
+  "memory": " 13. The train is moving at a",
+  "alone": " at 10:00 AM and takes",
+  "changed": true,
+  "lp_memory": -2.033275032043457,
+  "lp_alone": -0.743105125427246,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "13"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Yerevan leaves from platform",
+  "memory": " 19.00 at 10",
+  "alone": " A at 10:00 AM and",
+  "changed": true,
+  "lp_memory": -1.9915168762207032,
+  "lp_alone": -0.6895639419555664,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "19"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "The train to Lusaka leaves from platform",
+  "memory": " 15. The train is moving at a",
+  "alone": " at 10:00 AM and takes",
+  "changed": true,
+  "lp_memory": -1.9601608276367188,
+  "lp_alone": -0.745633316040039,
+  "test": "told",
+  "kind": "train",
+  "told": [
+   "15"
+  ],
+  "right": true,
+  "alone_right": false
+ },
+ {
+  "prompt": "Once upon a time, there was a boy",
+  "memory": " who was very young and he was very young.",
+  "alone": " who was very young and he was very young.",
+  "changed": false,
+  "lp_memory": -1.5553552627563476,
+  "lp_alone": -1.5553552627563476,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Friendly Gregory was walking home from school. He",
+  "memory": " saw a train going in the opposite direction. He",
+  "alone": " saw a train going in the opposite direction. He",
+  "changed": false,
+  "lp_memory": -1.1670257568359375,
+  "lp_alone": -1.1670257568359375,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Tim and Lily are twins who like to",
+  "memory": " play in a game where they have to collect points",
+  "alone": " play in a game where they have to collect points",
+  "changed": false,
+  "lp_memory": -1.2903873443603515,
+  "lp_alone": -1.2903873443603515,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Lily and Tom were playing in the park.",
+  "memory": " Lily has 1200 dollars in her",
+  "alone": " Lily has 12 marbles. Tom has",
+  "changed": true,
+  "lp_memory": -1.4432619094848633,
+  "lp_alone": -1.2022245407104493,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there were two best",
+  "memory": " friends, and there were no other friends. The",
+  "alone": " friends, and there were no other friends. The",
+  "changed": false,
+  "lp_memory": -1.2695775985717774,
+  "lp_alone": -1.2695775985717774,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Sally was in a hurry. She looked down",
+  "memory": " in the dark. She looked up in the dark",
+  "alone": " in the dark. She looked up in the dark",
+  "changed": false,
+  "lp_memory": -1.0637903213500977,
+  "lp_alone": -1.0637903213500977,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One day, Melvin was in the store with",
+  "memory": " his mother. He has a math problem that says",
+  "alone": " his mother. He had a problem with his math",
+  "changed": true,
+  "lp_memory": -1.5313257217407226,
+  "lp_alone": -1.437899398803711,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a little",
+  "memory": " girl named Lila who loved to solve puzzles and",
+  "alone": " girl named Lila who loved to solve puzzles and",
+  "changed": false,
+  "lp_memory": -0.9235435485839844,
+  "lp_alone": -0.9235435485839844,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a girl",
+  "memory": " named Lila who lived in a village called L",
+  "alone": " named Lila who lived in a village called L",
+  "changed": false,
+  "lp_memory": -1.2181460380554199,
+  "lp_alone": -1.2181460380554199,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Ben and Lily were twins who liked to",
+  "memory": " play in the park. One day, they decided",
+  "alone": " play in the park. One day, they decided",
+  "changed": false,
+  "lp_memory": -1.0909231185913086,
+  "lp_alone": -1.0909231185913086,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One sunny day, a little girl named Lily",
+  "memory": " is playing with her friend, a boy named Tom",
+  "alone": " is playing with her friend, a boy named Tom",
+  "changed": false,
+  "lp_memory": -1.1927967071533203,
+  "lp_alone": -1.1927967071533203,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a yellow",
+  "memory": " car, a red car, and a blue car",
+  "alone": " car, a red car, and a blue car",
+  "changed": false,
+  "lp_memory": -0.7769800186157226,
+  "lp_alone": -0.7769800186157226,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, a little girl named",
+  "memory": " Lila had a problem: \"How many ways",
+  "alone": " Lila had a problem: \"How many ways",
+  "changed": false,
+  "lp_memory": -1.3171524047851562,
+  "lp_alone": -1.3171524047851562,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a little",
+  "memory": " girl named Lila who loved to solve puzzles and",
+  "alone": " girl named Lila who loved to solve puzzles and",
+  "changed": false,
+  "lp_memory": -0.9235435485839844,
+  "lp_alone": -0.9235435485839844,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One day, a girl named Lily went for",
+  "memory": " a walk in the park. She has a bag",
+  "alone": " a walk in the park. She had a lot",
+  "changed": true,
+  "lp_memory": -1.1341718673706054,
+  "lp_alone": -1.076429557800293,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a big,",
+  "memory": " colorful tree in the forest. The tree is in",
+  "alone": " colorful tree in the forest. The tree is in",
+  "changed": false,
+  "lp_memory": -1.4124919891357421,
+  "lp_alone": -1.4124919891357421,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a little",
+  "memory": " girl named Lila who loved to solve puzzles and",
+  "alone": " girl named Lila who loved to solve puzzles and",
+  "changed": false,
+  "lp_memory": -0.9235435485839844,
+  "lp_alone": -0.9235435485839844,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once there was a curious gorilla. He was",
+  "memory": " a curious and curious. He was a curious and",
+  "alone": " a curious and curious. He was curious and curious",
+  "changed": true,
+  "lp_memory": -1.3505756378173828,
+  "lp_alone": -1.4540481567382812,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once there was a little boy named John.",
+  "memory": " He lived in a small town. He had a",
+  "alone": " He had a big problem. He wanted to know",
+  "changed": true,
+  "lp_memory": -0.8961444854736328,
+  "lp_alone": -1.232516098022461,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One day, a girl called Molly went to",
+  "memory": " the store. She has a budget of $1",
+  "alone": " the store. She had $100$",
+  "changed": true,
+  "lp_memory": -1.216378402709961,
+  "lp_alone": -1.2030759811401368,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, in a big jungle,",
+  "memory": " there were a lot of animals and plants. The",
+  "alone": " there were a lot of animals and plants. The",
+  "changed": false,
+  "lp_memory": -1.0398645401000977,
+  "lp_alone": -1.0398645401000977,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One day, a big cat and a little",
+  "memory": " cat are playing. The big cat is 1",
+  "alone": " cat are playing. The big cat is 1",
+  "changed": false,
+  "lp_memory": -0.9240985870361328,
+  "lp_alone": -0.9240985870361328,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a soft",
+  "memory": "ness in the air, and the air was filled",
+  "alone": "ness in the air, and the air was filled",
+  "changed": false,
+  "lp_memory": -1.3603532791137696,
+  "lp_alone": -1.3603532791137696,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "John walked outside. The sky was dark and",
+  "memory": " the sun was bright. He ran in the park",
+  "alone": " the sun was bright. He ran in the park",
+  "changed": false,
+  "lp_memory": -1.1667585372924805,
+  "lp_alone": -1.1667585372924805,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there were two little",
+  "memory": " birds, called the sparrows, and they lived",
+  "alone": " birds, called the sparrows, and they lived",
+  "changed": false,
+  "lp_memory": -1.5877775192260741,
+  "lp_alone": -1.5877775192260741,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there was a little",
+  "memory": " girl named Lila who loved to solve puzzles and",
+  "alone": " girl named Lila who loved to solve puzzles and",
+  "changed": false,
+  "lp_memory": -0.9235435485839844,
+  "lp_alone": -0.9235435485839844,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "There was a chubby little bunny rabbit. She",
+  "memory": " has a tail that is 12 inches long",
+  "alone": " had a big problem. She had to go to",
+  "changed": true,
+  "lp_memory": -1.3351930618286132,
+  "lp_alone": -1.4732685089111328,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once there was a smart musician. He liked",
+  "memory": " to play the piano. He has a piano.",
+  "alone": " to play the piano. He played the piano in",
+  "changed": true,
+  "lp_memory": -1.3446849822998046,
+  "lp_alone": -1.109244155883789,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once there was a big black bear who",
+  "memory": " lived in a forest. He had a big red",
+  "alone": " lived in a forest. He had a big red",
+  "changed": false,
+  "lp_memory": -1.1891288757324219,
+  "lp_alone": -1.1891288757324219,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a bookcase.",
+  "memory": " The bookcase has a shelf and a table.",
+  "alone": " The bookcase has a shelf and a table.",
+  "changed": false,
+  "lp_memory": -0.7993047714233399,
+  "lp_alone": -0.7993047714233399,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there were two friends,",
+  "memory": " Alice and Bob. They were in a situation where",
+  "alone": " Alice and Bob. They were in a situation where",
+  "changed": false,
+  "lp_memory": -1.2031272888183593,
+  "lp_alone": -1.2031272888183593,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Tommy loved trains. He had many trains in",
+  "memory": " his home. He had a train that was ",
+  "alone": " his home. He had a train that was ",
+  "changed": false,
+  "lp_memory": -1.1721561431884766,
+  "lp_alone": -1.1721561431884766,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a silly",
+  "memory": " story about a girl who had a very strange and",
+  "alone": " story about a girl who had a very strange and",
+  "changed": false,
+  "lp_memory": -1.861578369140625,
+  "lp_alone": -1.861578369140625,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a swan",
+  "memory": " that lived in a lake. The swan was",
+  "alone": " that lived in a lake. The swan was",
+  "changed": false,
+  "lp_memory": -1.0201274871826171,
+  "lp_alone": -1.0201274871826171,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Mama and her three year old daughter were",
+  "memory": " playing in the park. The park has a lot",
+  "alone": " playing in the park. The park has a lot",
+  "changed": false,
+  "lp_memory": -1.0828092575073243,
+  "lp_alone": -1.0828092575073243,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time there were two friends",
+  "memory": ", Alice and Bob. They were in a situation",
+  "alone": ", Alice and Bob. They were in a situation",
+  "changed": false,
+  "lp_memory": -1.2686737060546875,
+  "lp_alone": -1.2686737060546875,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once there was a little girl. Her name",
+  "memory": " is Lila. She has a special ability to",
+  "alone": " is Lila. She has a special ability to",
+  "changed": false,
+  "lp_memory": -1.2264556884765625,
+  "lp_alone": -1.2264556884765625,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, in a small house,",
+  "memory": " there were no doors, no windows, no walls",
+  "alone": " there were no doors, no windows, no walls",
+  "changed": false,
+  "lp_memory": -0.9850673675537109,
+  "lp_alone": -0.9850673675537109,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "One day, a little girl named Emma was",
+  "memory": " playing with her dog. She had a toy that",
+  "alone": " playing with her dog. She had a toy that",
+  "changed": false,
+  "lp_memory": -1.441185760498047,
+  "lp_alone": -1.441185760498047,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Tom and Lily liked to go to the",
+  "memory": " park every day. One day, they went to",
+  "alone": " park every day. One day, they went to",
+  "changed": false,
+  "lp_memory": -0.9589324951171875,
+  "lp_alone": -0.9589324951171875,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a girl",
+  "memory": " named Lila who lived in a village called L",
+  "alone": " named Lila who lived in a village called L",
+  "changed": false,
+  "lp_memory": -1.3147797584533691,
+  "lp_alone": -1.3147797584533691,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Sara likes to play with dolls. She has",
+  "memory": " 120 dolls in total. How many",
+  "alone": " 12 dolls and 12 dolls in",
+  "changed": true,
+  "lp_memory": -1.0185234069824218,
+  "lp_alone": -1.3383749008178711,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Once upon a time, there was a little",
+  "memory": " girl named Lila who lived in a small town",
+  "alone": " girl named Lila who lived in a small town",
+  "changed": false,
+  "lp_memory": -0.9870698928833008,
+  "lp_alone": -0.9870698928833008,
+  "test": "unrelated"
+ },
+ {
+  "prompt": "Anna and Ben are friends. They like to",
+  "memory": " play a game where they have to collect some number",
+  "alone": " play a game where they have to collect some number",
+  "changed": false,
+  "lp_memory": -0.8727029800415039,
+  "lp_alone": -0.8727029800415039,
+  "test": "unrelated"
+ }
+]

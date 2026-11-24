@@ -1,0 +1,11 @@
+[project]
+name = "ada-3-1"
+version = "0.1.0"
+description = "Route memory: a frozen language model learns from what it is told, with no training and no weight changes"
+requires-python = ">=3.12"
+dependencies = [
+    "mlx>=0.32",
+    "mlx-lm>=0.32",
+    "numpy>=2.0",
+    "huggingface-hub",
+]
