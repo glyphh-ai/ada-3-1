@@ -1,5 +1,31 @@
 # Findings
 
+## Where the similarity is lost on reworded questions (2026-11-24)
+
+`diagnose.py`, calibration records only (1,000 told, each reworded question
+traced at scale 80, step 300,000; 2,883 answer tokens).
+
+1. **It is the first answer token.** Right with memory: first token 53.2%,
+   second 92.6%, third or later 94.2% (model alone 3.6% / 40.8% / 61.0%). Once
+   the answer has started, the carry through the answer's own tokens holds.
+2. **It is finding, not pushing.** At the first token the right place has the
+   largest weight in 42.9% of questions (then the token is right 83.0%); in the
+   other 57.1% another memory's place is larger (right 30.8%). Of the 468
+   first-token failures, 84.4% have the right place not on top; its median
+   rank is 4 of 13,791, with 1.8% of all weight (46.3% when it succeeds).
+3. **Rewording breaks the carry.** In 635 of 1,000 questions the only closing
+   token the reworded question shares with the told one is the last (`?`):
+   right place on top 28.8%, token right 43.6%. With 7 or more closing tokens
+   unchanged: 77.1% and 81.4%. The carry runs token against token at the same
+   offset, so inserted or reordered words leave it only the final token.
+4. **One token cannot tell the questions apart well enough.** Last question
+   token against the told question's last token, no carry: sim to the right
+   place 0.877, to the closest other memory 0.893; the right place is the
+   closest in 42.9%. By blocks: 1-8 36.1%, 9-16 37.2%, 17-24 38.2%, 25-32
+   48.5%. All sims sit in a narrow band (0.85-0.92): most units fire the same
+   for every question's last token, and the part that differs between
+   questions is a small share of the route, strongest in the last blocks.
+
 ## The step curve, continued (2026-11-24)
 
 `edit_test.py published steps`, as written in PROTOCOL.md. Same model, same
