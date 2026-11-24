@@ -26,6 +26,17 @@ as a perfect match. Fixed with a floor on the centred length; rerun on
 calibration only (`published centered token-calibration`) before the test edits
 are touched again.
 
+**Per-token version, fixed, calibration only:** worse, not better. Its best
+point is 0.999 / 0.603 / 0.982 (scale 40, step 300,000), against 0.744 for the
+global version and 0.724 for the plain sim at the same locality. The test edits
+were not scored with it. Comparing each token against the usual firing of that
+same token removes too much: what tells one question from another at its last
+token is evidently carried by units that also fire for that token in general.
+
+So removing shared firing is worth about +0.02 and is not the lever. The other
+cause from the diagnosis is untouched: the carry runs token against token at
+the same offset, and a reworded question keeps only its last token in place.
+
 ## Where the similarity is lost on reworded questions (2026-11-24)
 
 `diagnose.py`, calibration records only (1,000 told, each reworded question
