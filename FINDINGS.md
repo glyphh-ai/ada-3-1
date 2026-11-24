@@ -1,5 +1,31 @@
 # Findings
 
+## Sim on what differs (2026-11-24)
+
+`edit_test.py published centered`, as written in PROTOCOL.md. Calibration picked
+the `global` version (scale 40, step 300,000); third scoring of the same 1,000
+test edits.
+
+| method | reliability | generalization | locality |
+|---|---|---|---|
+| route memory, sim centred on each unit's usual firing | 1.00 | 0.79 | 0.98 |
+| route memory, plain sim, larger step | 1.00 | 0.77 | 0.99 |
+| route memory, plain sim, first matched run | 1.00 | 0.72 | 0.99 |
+| MEMOIR (published, LLaMA-3-8B) | 0.94 | 0.85 | 1.00 |
+
+Exact: 0.9994 / 0.7933 / 0.9816 (calibration at the pick 0.998 / 0.744 / 0.981;
+the plain sim's best calibration point was 0.999 / 0.724 / 0.987). A small gain:
++0.02 generalization for -0.01 locality. Removing the global usual firing does
+not separate the questions much better.
+
+The `token` version (usual firing taken per token) is not a result: it scored
+0.28 reliability on calibration because of a numerical fault of mine. A token
+whose route is the same every time it is told (the first word of a sentence)
+has nothing left after centring, and its cosine became noise over nothing, read
+as a perfect match. Fixed with a floor on the centred length; rerun on
+calibration only (`published centered token-calibration`) before the test edits
+are touched again.
+
 ## Where the similarity is lost on reworded questions (2026-11-24)
 
 `diagnose.py`, calibration records only (1,000 told, each reworded question

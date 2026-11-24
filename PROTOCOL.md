@@ -225,6 +225,30 @@ This is the second time the test edits are scored. The setting is chosen from
 calibration alone, and both test results are kept and reported (1.00 / 0.72 /
 0.99 for the first).
 
+## Sim on what differs (written before running, 2026-11-24)
+
+`diagnose.py` (calibration only) showed the reworded questions fail at the first
+answer token because the right memory is not found: most units of a route fire
+the same for every question, so one token's sim barely separates questions
+(right place 0.877, closest other 0.893). Chris agreed the fix to try: measure
+the sim only on what differs.
+
+Change, the only one (`Memory.set_center`, `shares`): before two routes are
+compared, each unit's usual firing is removed; the sim is `(1 + cosine) / 2` of
+what is left, so a unit that fires as usual counts for nothing and a unit that
+departs from its usual counts in proportion. Two versions of "usual" are tried:
+- `global`: the unit's mean over every told token;
+- `token`: its mean over the told tokens that are the same token (a token told
+  fewer than 5 times uses the global mean).
+The carry, the surprise nudge, the sampled units and the scoring are unchanged.
+
+`edit_test.py published centered`: both versions over scale {5, 10, 20, 40, 80,
+160} x step {1e2, 1e3, 1e4, 1e5, 3e5} on the same calibration records; the best
+mean of the three scores picks version and setting; then the same 1,000 test
+edits once. Third scoring of those test edits (1.00 / 0.72 / 0.99, then 1.00 /
+0.77 / 0.99); all three are kept and reported, and the choice comes from
+calibration alone.
+
 ## Test 2: the bug in test 1, fixed (written before running, 2026-11-23)
 
 Test 1 recalled nothing, and that was a bug in how I wrote the weight, found on

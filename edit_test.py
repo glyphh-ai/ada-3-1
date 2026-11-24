@@ -77,10 +77,46 @@ class Memory:
         self.pos, self.vals = np.array(pos), np.array(vals)
         self.pidx, self.pval = np.concatenate(pidx), np.concatenate(pval).astype(np.float64)
         self.has_prev = self.pos >= 1
+        self.center = None
 
-    def shares(self, routes):
-        """Share of sampled units equal: every given token against every told token, (T, N)."""
-        return np.array((1 + routes @ self.M.T / N_SAMPLE) / 2, dtype=np.float64)
+    def set_center(self, mode):
+        """Measure sim only on what differs: remove each unit's usual firing before comparing.
+        "global": usual = the unit's mean over every told token.
+        "token":  usual = its mean over the told tokens that are this same token (tokens told
+                  fewer than 5 times fall back to the global mean)."""
+        self.center = mode
+        rows, self.row_of = [mx.mean(self.M, axis=0)], {}
+        if mode == "token":
+            toks, counts = np.unique(self.vals, return_counts=True)
+            for t in toks[counts >= 5]:
+                self.row_of[int(t)] = len(rows)
+                rows.append(mx.mean(self.M[mx.array(np.where(self.vals == t)[0])], axis=0))
+        self.U = mx.stack(rows)                                           # (K, units) the usual firings
+        mx.eval(self.U)
+        self.b = np.array([self.row_of.get(int(t), 0) for t in self.vals])   # which usual each told token has
+        self.UM = np.array(self.U @ self.M.T, dtype=np.float64)           # (K, N)
+        self.UU = np.array(self.U @ self.U.T, dtype=np.float64)           # (K, K)
+        n = np.arange(len(self.b))
+        self.mnorm2 = N_SAMPLE - 2 * self.UM[self.b, n] + self.UU[self.b, self.b]
+
+    def shares(self, routes, ids=None):
+        """Sim of every given token to every told token, (T, N), in 0..1.
+        Not centred: the share of sampled units equal. Centred: (1 + cosine of the two routes
+        after each has its usual firing removed) / 2, so units that fire as usual count for nothing."""
+        QM = np.array(routes @ self.M.T, dtype=np.float64)
+        if self.center is None:
+            return (1 + QM / N_SAMPLE) / 2
+        QU = np.array(routes @ self.U.T, dtype=np.float64)                # (T, K)
+        a = np.array([self.row_of.get(int(t), 0) for t in ids])
+        t = np.arange(len(a))
+        num = QM - QU[:, self.b] - self.UM[a] + self.UU[a][:, self.b]
+        qnorm2 = N_SAMPLE - 2 * QU[t, a] + self.UU[a, a]
+        # A token that fires the same every time it is told has nothing left after centring by
+        # its own token; without a floor its cosine is noise over nothing (this broke the first
+        # "token" run: reliability 0.28). The floor makes such a token count as "no evidence".
+        floor = 0.02 * N_SAMPLE if self.center == "token" else 0.0
+        cos = num / np.sqrt(np.maximum((qnorm2[:, None] + floor) * (self.mnorm2[None, :] + floor), 1e-9))
+        return (1 + np.clip(cos, -1, 1)) / 2
 
     def weights(self, S, scale):
         """Carried sim, no gate: P_t[n] = S_t[n]^scale * (1 + P_(t-1)[n-1]). Returns, for every
@@ -123,7 +159,7 @@ def evaluate(m, mem, recs, settings, label):
             base = lp_np.argmax(-1)
             if kind != "loc":
                 alone[kind].append(float((base == want).mean()))
-            S = mem.shares(routes)
+            S = mem.shares(routes, ids)
             for scale in sorted({s[0] for s in settings}):
                 W = mem.weights(S, scale)
                 shifts = [mem.shift(W[t]) for t in at]
@@ -152,23 +188,40 @@ def main():
     else:
         cal = records(OFFSET + N_EDITS, OFFSET + 2 * N_EDITS)
     grid = list(itertools.product(SCALES, ETAS))
-    res, _ = evaluate(m, write(m, cal, "calibration"), cal, grid, "calibration")
-    print("calibration (reliability, generalization, locality):")
-    for s in grid:
-        print(f"  scale {s[0]:g} step {s[1]:g}: " + " / ".join(f"{x:.3f}" for x in res[s]))
-    best = max(grid, key=lambda s: np.mean(res[s]))
-    print(f"picked: scale {best[0]:g}, step {best[1]:g}")
-    tag = ("_published_steps" if STEPS else "_published") if PUBLISHED else ""
-    Path(f"edit_calibration{tag}.json").write_text(json.dumps({f"{s[0]:g},{s[1]:g}": res[s] for s in grid}, indent=1))
+    mem = write(m, cal, "calibration")
+    cal_res = {}
+    for mode in CENTERS:
+        if mode:
+            mem.set_center(mode)
+        res, _ = evaluate(m, mem, cal, grid, f"calibration {mode or ''}".strip())
+        print(f"calibration{', sim centred: ' + mode if mode else ''} (reliability, generalization, locality):")
+        for s in grid:
+            print(f"  scale {s[0]:g} step {s[1]:g}: " + " / ".join(f"{x:.3f}" for x in res[s]))
+            cal_res[(mode, *s)] = res[s]
+    del mem
+    best_all = max(cal_res, key=lambda s: np.mean(cal_res[s]))
+    mode, best = best_all[0], best_all[1:]
+    print(f"picked: {'sim centred: ' + mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g}")
+    tag = ("_published_centered" if CENTERS != [None] else "_published_steps" if STEPS else "_published") if PUBLISHED else ""
+    if CAL_ONLY:
+        tag += "_" + CAL_ONLY
+    Path(f"edit_calibration{tag}.json").write_text(json.dumps(
+        {f"{s[0] or 'plain'},{s[1]:g},{s[2]:g}": v for s, v in cal_res.items()}, indent=1))
+    if CAL_ONLY:
+        return
 
     if PUBLISHED:
         lo = 0 if N_EDITS >= 1000 else 1000        # a plumbing run only touches records 1000+, outside the test
         test = json.loads(Path("data/ZsRE/zsre_mend_edit.json").read_text())[lo:lo + N_EDITS]
     else:
         test = records(OFFSET, OFFSET + N_EDITS)
-    res, alone = evaluate(m, write(m, test, "test"), test, [best], "test")
+    mem = write(m, test, "test")
+    if mode:
+        mem.set_center(mode)
+    res, alone = evaluate(m, mem, test, [best], "test")
     rel, gen, loc = res[best]
-    print(f"\nzsRE, {N_EDITS} edits at once, {NAME}, run once (scale {best[0]:g}, step {best[1]:g}):")
+    print(f"\nzsRE, {N_EDITS} edits at once, {NAME}, run once "
+          f"({'sim centred: ' + mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g}):")
     print("| method | reliability | generalization | locality |\n|---|---|---|---|")
     print(f"| route memory, surprise (this run) | {rel:.2f} | {gen:.2f} | {loc:.2f} |")
     print(f"| model alone (this run) | {alone[0]:.2f} | {alone[1]:.2f} | 1.00 |")
@@ -176,17 +229,25 @@ def main():
     print("| WISE (published, LLaMA-2-7B) | 0.77 | 0.72 | 1.00 |")
     print("| GRACE (published, LLaMA-2-7B) | 0.93 | 0.08 | 1.00 |")
     Path(f"edit_results{tag}.json").write_text(json.dumps(
-        {"model": NAME, "edits": N_EDITS, "scale": best[0], "step": best[1], "reliability": rel,
+        {"model": NAME, "edits": N_EDITS, "centred": mode, "scale": best[0], "step": best[1], "reliability": rel,
          "generalization": gen, "locality": loc, "alone_reliability": alone[0], "alone_generalization": alone[1]}, indent=1))
 
 
 if __name__ == "__main__":
-    OFFSET, PUBLISHED, STEPS = 0, False, False
+    OFFSET, PUBLISHED, STEPS, CENTERS, CAL_ONLY = 0, False, False, [None], ""
     if sys.argv[1:2] == ["published"]:  # the published setup: full-precision model, the published runs' edit set
         PUBLISHED, NAME = True, "Meta-Llama-3-8B-Instruct"
         SCALES, ETAS = (20.0, 30.0, 40.0, 60.0, 80.0), (30.0, 100.0, 300.0, 1000.0, 3000.0)
         if sys.argv[2:3] == ["steps"]:  # the step curve continued past the first grid's top
             SCALES, ETAS, STEPS = (50.0, 60.0, 80.0, 100.0), (3e3, 1e4, 3e4, 1e5, 3e5), True
+        elif sys.argv[2:3] == ["centered"]:   # sim measured only on what differs from each unit's usual firing
+            CENTERS = ["global", "token"]
+            SCALES, ETAS = (5.0, 10.0, 20.0, 40.0, 80.0, 160.0), (1e2, 1e3, 1e4, 1e5, 3e5)
+            if sys.argv[3:4] == ["token-calibration"]:   # calibration only, the test edits are not touched
+                CENTERS, CAL_ONLY = ["token"], "token_floor"
+                SCALES = (10.0, 20.0, 40.0, 80.0, 160.0)
+            elif len(sys.argv) > 3:     # plumbing only
+                N_EDITS = int(sys.argv[3])
         elif len(sys.argv) > 2:         # plumbing only: first n calibration records, n records from the far end as "test"
             N_EDITS = int(sys.argv[2])
     elif len(sys.argv) > 1:             # smoke on records the real run never touches: edit_test.py <n edits>
