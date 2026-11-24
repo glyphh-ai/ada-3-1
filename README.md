@@ -12,6 +12,10 @@ weights change, and nothing is added to later prompts.
    every stored token's route, and that similarity is carried token by token
    along the stored sentence, never gated:
    `P_t[n] = sim_t[n]^scale * (1 + P_(t-1)[n-1])`
+   A told sentence also collects evidence wherever its words appear, at any
+   position, each word counting by how particular it is:
+   `a_t[n] = sim_t[n]^scale / sum_n' sim_t[n']^scale`, `E[sentence] = sum a`,
+   and a place's weight is its carried similarity times its sentence's `E`.
 3. **Nudged.** The next-token scores are pushed by the surprise of what was told:
    `scores = log p_model + step * sum_places P[place] * (told - predicted)`
    This is one backprop step on the output weights per told token, kept beside
@@ -21,20 +25,26 @@ weights change, and nothing is added to later prompts.
 ## Result so far
 
 zsRE, 1,000 edits told at once, full-precision LLaMA-3-8B-Instruct, the edit set
-and scoring of the published runs (`edit_test.py published steps`; the first
-matched run, with a smaller step, gave 1.00 / 0.72 / 0.99):
+and scoring of the published runs (`edit_test.py published evidence`; earlier
+versions on the same test edits gave 1.00 / 0.72 / 0.99, 1.00 / 0.77 / 0.99 and
+1.00 / 0.79 / 0.98, see FINDINGS.md):
 
 | method | reliability | generalization | locality |
 |---|---|---|---|
-| route memory (this repo) | 1.00 | 0.77 | 0.99 |
+| route memory (this repo) | 1.00 | 0.87 | 0.95 |
 | model alone | 0.31 | 0.30 | 1.00 |
-| MEMOIR (published, LLaMA-3-8B) | 0.94 | 0.85 | 1.00 |
-| WISE (published, LLaMA-2-7B) | 0.77 | 0.72 | 1.00 |
-| GRACE (published, LLaMA-2-7B) | 0.93 | 0.08 | 1.00 |
+| MEMOIR (published) | 0.94 | 0.85 | 1.00 |
+| AlphaEdit (published) | 0.84 | 0.77 | 0.56 |
+| WISE (published) | 0.66 | 0.64 | 1.00 |
+| GRACE (published) | 1.00 | 0.37 | 1.00 |
+
+The published rows are all on the same model (LLaMA-3-8B), as reported in the
+MEMOIR paper (arXiv 2506.07899).
 
 Limits: scoring is a port of EasyEdit's `test_prediction_acc` (the original
-needs CUDA); the other rows are published numbers, not reruns; raising the step
-further no longer lifts generalization much (it flattens near 0.75).
+needs CUDA); the other rows are published numbers, not reruns; locality is 0.95
+where the gated methods report 1.00 (a setting with 0.98 locality gives 0.82
+generalization on calibration).
 
 ## Run it (Apple silicon, MLX)
 

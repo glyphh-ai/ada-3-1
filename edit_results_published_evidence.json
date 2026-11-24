@@ -1,0 +1,12 @@
+{
+ "model": "Meta-Llama-3-8B-Instruct",
+ "edits": 1000,
+ "centred": "evidence-times",
+ "scale": 40.0,
+ "step": 10000.0,
+ "reliability": 1.0,
+ "generalization": 0.8671904761904762,
+ "locality": 0.9468414717342962,
+ "alone_reliability": 0.30603589466089465,
+ "alone_generalization": 0.3025628427128427
+}

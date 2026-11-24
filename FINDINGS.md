@@ -1,5 +1,36 @@
 # Findings
 
+## Evidence wherever the words appear (2026-11-24): generalization above MEMOIR's
+
+`edit_test.py published evidence`, as written in PROTOCOL.md. Calibration picked
+`evidence-times`, scale 40, step 10,000 (calibration 0.999 / 0.846 / 0.954, mean
+0.933 against the standing 0.908), so the 1,000 test edits were scored: the
+fourth scoring of those edits, every one listed here.
+
+| method (all LLaMA-3-8B, zsRE, 1,000 edits) | reliability | generalization | locality |
+|---|---|---|---|
+| route memory, evidence wherever the words appear | 1.00 | 0.87 | 0.95 |
+| route memory, sim centred on usual firing | 1.00 | 0.79 | 0.98 |
+| route memory, plain sim, larger step | 1.00 | 0.77 | 0.99 |
+| route memory, plain sim, first matched run | 1.00 | 0.72 | 0.99 |
+| MEMOIR (published) | 0.94 | 0.85 | 1.00 |
+| AlphaEdit (published) | 0.84 | 0.77 | 0.56 |
+| WISE (published) | 0.66 | 0.64 | 1.00 |
+| GRACE (published) | 1.00 | 0.37 | 1.00 |
+
+Exact: 1.0000 / 0.8672 / 0.9468. Reliability and generalization are above every
+published row; locality is 0.95 where MEMOIR, WISE and GRACE report 1.00.
+
+The trade is still there and can be read off calibration: scale 80, step 1e7
+gives 1.000 / 0.819 / 0.977 and scale 80, step 1e6 gives 1.000 / 0.787 / 0.986.
+`evidence-plus` (multiply by 1 + E) is worse at every comparable point: the
+gain comes from sentences with no particular word in common fading out, not
+from a bonus on top.
+
+Limits, unchanged: the published rows are the MEMOIR paper's numbers, not
+reruns; scoring is my port of EasyEdit's function; the test edits have now been
+scored four times, each time with a setting picked on calibration alone.
+
 ## Sim on what differs (2026-11-24)
 
 `edit_test.py published centered`, as written in PROTOCOL.md. Calibration picked

@@ -59,11 +59,13 @@ class Memory:
 
     def __init__(self, m, told):
         self.m = m
-        routes, pos, vals, pidx, pval = [], [], [], [], []
-        for text in told:
+        routes, pos, vals, pidx, pval, owner = [], [], [], [], [], []
+        self.evidence, self.n_mem = None, len(told)
+        for i, text in enumerate(told):
             ids, lp, r = m.run(text)
             routes.append(r)
             pos += list(range(len(ids)))
+            owner += [i] * len(ids)
             top = mx.argpartition(-lp, TOPK, axis=-1)[:, :TOPK]
             mx.eval(top)
             top = np.array(top)
@@ -74,7 +76,7 @@ class Memory:
             pval.append(np.concatenate([p[:1] * 0, p[:-1]]))
         self.M = mx.concatenate(routes, 0)
         mx.eval(self.M)
-        self.pos, self.vals = np.array(pos), np.array(vals)
+        self.pos, self.vals, self.owner = np.array(pos), np.array(vals), np.array(owner)
         self.pidx, self.pval = np.concatenate(pidx), np.concatenate(pval).astype(np.float64)
         self.has_prev = self.pos >= 1
         self.center = None
@@ -118,15 +120,35 @@ class Memory:
         cos = num / np.sqrt(np.maximum((qnorm2[:, None] + floor) * (self.mnorm2[None, :] + floor), 1e-9))
         return (1 + np.clip(cos, -1, 1)) / 2
 
+    def set_mode(self, mode):
+        if mode in ("global", "token"):
+            self.set_center(mode)
+        elif mode in ("evidence-times", "evidence-plus"):
+            self.evidence = mode.split("-")[1]
+
     def weights(self, S, scale):
         """Carried sim, no gate: P_t[n] = S_t[n]^scale * (1 + P_(t-1)[n-1]). Returns, for every
-        position t, the weight of each place n (the sim carried up to told token n-1)."""
+        position t, the weight of each place n (the sim carried up to told token n-1).
+
+        With evidence on, a told sentence also collects evidence wherever its words appear,
+        whatever their position: each token so far gives every told token its share of that
+        token's total match, a = S^scale / sum over all told tokens of S^scale (a word told in
+        a thousand sentences gives each a thousandth; a word told in one gives it nearly all),
+        and E[sentence] is the sum of a over the sentence's tokens and the tokens so far.
+        The place's weight is then multiplied by E ("times") or by 1 + E ("plus")."""
         P = np.zeros(S.shape[1])
+        E = np.zeros(self.n_mem)
         out = []
         for row in S:
+            r = row ** scale
             prev = np.where(self.has_prev, np.roll(P, 1), 0.0)
-            P = row ** scale * (1.0 + prev)
-            out.append(np.where(self.has_prev, np.roll(P, 1), 0.0))
+            P = r * (1.0 + prev)
+            w = np.where(self.has_prev, np.roll(P, 1), 0.0)
+            if self.evidence:
+                E = E + np.bincount(self.owner, weights=r / r.sum(), minlength=self.n_mem)
+                f = E[self.owner]
+                w = w * (f if self.evidence == "times" else 1.0 + f)
+            out.append(w)
         return out
 
     def shift(self, w):
@@ -192,22 +214,26 @@ def main():
     cal_res = {}
     for mode in CENTERS:
         if mode:
-            mem.set_center(mode)
+            mem.set_mode(mode)
         res, _ = evaluate(m, mem, cal, grid, f"calibration {mode or ''}".strip())
-        print(f"calibration{', sim centred: ' + mode if mode else ''} (reliability, generalization, locality):")
+        print(f"calibration{', ' + mode if mode else ''} (reliability, generalization, locality):")
         for s in grid:
             print(f"  scale {s[0]:g} step {s[1]:g}: " + " / ".join(f"{x:.3f}" for x in res[s]))
             cal_res[(mode, *s)] = res[s]
     del mem
     best_all = max(cal_res, key=lambda s: np.mean(cal_res[s]))
     mode, best = best_all[0], best_all[1:]
-    print(f"picked: {'sim centred: ' + mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g}")
-    tag = ("_published_centered" if CENTERS != [None] else "_published_steps" if STEPS else "_published") if PUBLISHED else ""
+    print(f"picked: {mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g} "
+          f"(calibration mean {np.mean(cal_res[best_all]):.3f})")
+    tag = (TAG or ("_published_centered" if CENTERS != [None] else "_published_steps" if STEPS else "_published")) if PUBLISHED else ""
     if CAL_ONLY:
         tag += "_" + CAL_ONLY
     Path(f"edit_calibration{tag}.json").write_text(json.dumps(
         {f"{s[0] or 'plain'},{s[1]:g},{s[2]:g}": v for s, v in cal_res.items()}, indent=1))
     if CAL_ONLY:
+        return
+    if np.mean(cal_res[best_all]) <= CAL_BAR:
+        print(f"not better on calibration than the standing best ({CAL_BAR:.3f}): the test edits are not scored")
         return
 
     if PUBLISHED:
@@ -217,24 +243,26 @@ def main():
         test = records(OFFSET, OFFSET + N_EDITS)
     mem = write(m, test, "test")
     if mode:
-        mem.set_center(mode)
+        mem.set_mode(mode)
     res, alone = evaluate(m, mem, test, [best], "test")
     rel, gen, loc = res[best]
     print(f"\nzsRE, {N_EDITS} edits at once, {NAME}, run once "
-          f"({'sim centred: ' + mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g}):")
+          f"({mode + ', ' if mode else ''}scale {best[0]:g}, step {best[1]:g}):")
     print("| method | reliability | generalization | locality |\n|---|---|---|---|")
     print(f"| route memory, surprise (this run) | {rel:.2f} | {gen:.2f} | {loc:.2f} |")
     print(f"| model alone (this run) | {alone[0]:.2f} | {alone[1]:.2f} | 1.00 |")
+    # the other methods on this same model, as reported in the MEMOIR paper (arXiv 2506.07899), zsRE T=1000
     print("| MEMOIR (published, LLaMA-3-8B) | 0.94 | 0.85 | 1.00 |")
-    print("| WISE (published, LLaMA-2-7B) | 0.77 | 0.72 | 1.00 |")
-    print("| GRACE (published, LLaMA-2-7B) | 0.93 | 0.08 | 1.00 |")
+    print("| AlphaEdit (published, LLaMA-3-8B) | 0.84 | 0.77 | 0.56 |")
+    print("| WISE (published, LLaMA-3-8B) | 0.66 | 0.64 | 1.00 |")
+    print("| GRACE (published, LLaMA-3-8B) | 1.00 | 0.37 | 1.00 |")
     Path(f"edit_results{tag}.json").write_text(json.dumps(
         {"model": NAME, "edits": N_EDITS, "centred": mode, "scale": best[0], "step": best[1], "reliability": rel,
          "generalization": gen, "locality": loc, "alone_reliability": alone[0], "alone_generalization": alone[1]}, indent=1))
 
 
 if __name__ == "__main__":
-    OFFSET, PUBLISHED, STEPS, CENTERS, CAL_ONLY = 0, False, False, [None], ""
+    OFFSET, PUBLISHED, STEPS, CENTERS, CAL_ONLY, TAG, CAL_BAR = 0, False, False, [None], "", "", -1.0
     if sys.argv[1:2] == ["published"]:  # the published setup: full-precision model, the published runs' edit set
         PUBLISHED, NAME = True, "Meta-Llama-3-8B-Instruct"
         SCALES, ETAS = (20.0, 30.0, 40.0, 60.0, 80.0), (30.0, 100.0, 300.0, 1000.0, 3000.0)
@@ -248,6 +276,12 @@ if __name__ == "__main__":
                 SCALES = (10.0, 20.0, 40.0, 80.0, 160.0)
             elif len(sys.argv) > 3:     # plumbing only
                 N_EDITS = int(sys.argv[3])
+        elif sys.argv[2:3] == ["evidence"]:   # a told sentence collects evidence wherever its words appear
+            CENTERS, TAG = ["evidence-times", "evidence-plus"], "_published_evidence"
+            SCALES, ETAS = (20.0, 40.0, 80.0), (1e2, 1e3, 1e4, 1e5, 1e6, 1e7)
+            CAL_BAR = (0.998 + 0.744 + 0.981) / 3      # the standing best on calibration (centred sim)
+            if len(sys.argv) > 3:       # plumbing only
+                N_EDITS, CAL_BAR = int(sys.argv[3]), -1.0
         elif len(sys.argv) > 2:         # plumbing only: first n calibration records, n records from the far end as "test"
             N_EDITS = int(sys.argv[2])
     elif len(sys.argv) > 1:             # smoke on records the real run never touches: edit_test.py <n edits>

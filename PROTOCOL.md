@@ -249,6 +249,37 @@ edits once. Third scoring of those test edits (1.00 / 0.72 / 0.99, then 1.00 /
 0.77 / 0.99); all three are kept and reported, and the choice comes from
 calibration alone.
 
+## Evidence wherever the words appear (written before running, 2026-11-24)
+
+Removing shared firing gave +0.02 (global) or made it worse (per token). The
+other cause from `diagnose.py` is untouched: the carry runs token against token
+at the same offset, and 635 of 1,000 reworded questions keep only their last
+token in place. Chris: try letting it follow the told sentence when the same
+words appear at different positions.
+
+Change (`Memory.weights`, plain sim): besides the carry, every told sentence
+collects evidence from every token so far, at any position:
+
+    a_t[n] = S_t[n]^scale / sum over all told tokens n' of S_t[n']^scale
+    E[sentence] = sum over tokens so far t and the sentence's tokens n of a_t[n]
+
+The division is what makes a word count by how particular it is: a word told in
+a thousand sentences gives each a thousandth of itself, a word told in one gives
+that sentence nearly all. A place's weight is its carried sim multiplied by E of
+its sentence (`evidence-times`) or by 1 + E (`evidence-plus`). Nothing is gated;
+the surprise nudge and the scoring are unchanged.
+
+`edit_test.py published evidence`: both forms over scale {20, 40, 80} x step
+{1e2 ... 1e7} on the calibration records. Only if the best calibration mean
+beats the standing best (0.908, the centred sim) are the 1,000 test edits scored
+(a fourth scoring; every result is kept and reported).
+
+The comparison rows are corrected from here on: the MEMOIR paper reports the
+other methods on this same model (LLaMA-3-8B, zsRE, T = 1000): MEMOIR 0.94 /
+0.85 / 1.00, AlphaEdit 0.84 / 0.77 / 0.56, WISE 0.66 / 0.64 / 1.00, GRACE 1.00 /
+0.37 / 1.00. The WISE and GRACE rows shown before were their LLaMA-2-7B numbers
+from the WISE paper.
+
 ## Test 2: the bug in test 1, fixed (written before running, 2026-11-23)
 
 Test 1 recalled nothing, and that was a bug in how I wrote the weight, found on
