@@ -1,4 +1,28 @@
-# version_24 findings
+# Findings
+
+## The step curve, continued (2026-11-24)
+
+`edit_test.py published steps`, as written in PROTOCOL.md. Same model, same
+1,000 test edits, the grid continued upward on the same calibration records
+(picked scale 80, step 300,000). Second scoring of the test edits; the first is
+the section below.
+
+| method | reliability | generalization | locality |
+|---|---|---|---|
+| route memory, surprise (scale 80, step 300,000) | 1.00 | 0.77 | 0.99 |
+| route memory, surprise (first matched run: scale 60, step 3,000) | 1.00 | 0.72 | 0.99 |
+| MEMOIR (published, LLaMA-3-8B) | 0.94 | 0.85 | 1.00 |
+| WISE (published, LLaMA-2-7B) | 0.77 | 0.72 | 1.00 |
+
+Exact: 1.0000 / 0.7736 / 0.9897 (calibration at the pick: 0.999 / 0.724 /
+0.987). Generalization is now above WISE and 0.08 under MEMOIR.
+
+The step is running out: on calibration, generalization flattens near 0.74-0.76
+however large the step (scale 50: 0.71, 0.73, 0.74, 0.74, 0.74; scale 60 ends
+at 0.76 with locality down to 0.86; scale 80 still creeps up, 0.70 -> 0.72 at
+the last tripling). The rest of the gap is not a strength setting: for about a
+quarter of answer tokens the reworded question's route does not carry enough
+similarity to the told question for any step to help.
 
 ## The editing table, matched to the published setup (2026-11-24)
 

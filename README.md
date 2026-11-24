@@ -21,19 +21,20 @@ weights change, and nothing is added to later prompts.
 ## Result so far
 
 zsRE, 1,000 edits told at once, full-precision LLaMA-3-8B-Instruct, the edit set
-and scoring of the published runs (`edit_test.py published`, run once):
+and scoring of the published runs (`edit_test.py published steps`; the first
+matched run, with a smaller step, gave 1.00 / 0.72 / 0.99):
 
 | method | reliability | generalization | locality |
 |---|---|---|---|
-| route memory (this repo) | 1.00 | 0.72 | 0.99 |
+| route memory (this repo) | 1.00 | 0.77 | 0.99 |
 | model alone | 0.31 | 0.30 | 1.00 |
 | MEMOIR (published, LLaMA-3-8B) | 0.94 | 0.85 | 1.00 |
 | WISE (published, LLaMA-2-7B) | 0.77 | 0.72 | 1.00 |
 | GRACE (published, LLaMA-2-7B) | 0.93 | 0.08 | 1.00 |
 
 Limits: scoring is a port of EasyEdit's `test_prediction_acc` (the original
-needs CUDA); the other rows are published numbers, not reruns; the step setting
-sat at the top of its grid, so the generalization curve is not finished.
+needs CUDA); the other rows are published numbers, not reruns; raising the step
+further no longer lifts generalization much (it flattens near 0.75).
 
 ## Run it (Apple silicon, MLX)
 

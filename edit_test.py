@@ -158,7 +158,7 @@ def main():
         print(f"  scale {s[0]:g} step {s[1]:g}: " + " / ".join(f"{x:.3f}" for x in res[s]))
     best = max(grid, key=lambda s: np.mean(res[s]))
     print(f"picked: scale {best[0]:g}, step {best[1]:g}")
-    tag = "_published" if PUBLISHED else ""
+    tag = ("_published_steps" if STEPS else "_published") if PUBLISHED else ""
     Path(f"edit_calibration{tag}.json").write_text(json.dumps({f"{s[0]:g},{s[1]:g}": res[s] for s in grid}, indent=1))
 
     if PUBLISHED:
@@ -181,11 +181,13 @@ def main():
 
 
 if __name__ == "__main__":
-    OFFSET, PUBLISHED = 0, False
+    OFFSET, PUBLISHED, STEPS = 0, False, False
     if sys.argv[1:2] == ["published"]:  # the published setup: full-precision model, the published runs' edit set
         PUBLISHED, NAME = True, "Meta-Llama-3-8B-Instruct"
         SCALES, ETAS = (20.0, 30.0, 40.0, 60.0, 80.0), (30.0, 100.0, 300.0, 1000.0, 3000.0)
-        if len(sys.argv) > 2:           # plumbing only: first n calibration records, n records from the far end as "test"
+        if sys.argv[2:3] == ["steps"]:  # the step curve continued past the first grid's top
+            SCALES, ETAS, STEPS = (50.0, 60.0, 80.0, 100.0), (3e3, 1e4, 3e4, 1e5, 3e5), True
+        elif len(sys.argv) > 2:         # plumbing only: first n calibration records, n records from the far end as "test"
             N_EDITS = int(sys.argv[2])
     elif len(sys.argv) > 1:             # smoke on records the real run never touches: edit_test.py <n edits>
         N_EDITS, OFFSET = int(sys.argv[1]), 5000

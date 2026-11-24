@@ -213,6 +213,18 @@ This run, `edit_test.py published`:
 
 Everything else as in the run above (32,768 sampled units, top-64 predictions).
 
+## The step curve, continued (written before running, 2026-11-24)
+
+The matched run picked the largest step in its grid (scale 60, step 3000), and
+on calibration generalization was still rising with the step at flat locality.
+`edit_test.py published steps` continues the grid: scale {50, 60, 80, 100} x
+step {3e3, 1e4, 3e4, 1e5, 3e5}, picked on the same calibration records by the
+same rule (best mean of the three scores), then the same 1,000 test edits once.
+
+This is the second time the test edits are scored. The setting is chosen from
+calibration alone, and both test results are kept and reported (1.00 / 0.72 /
+0.99 for the first).
+
 ## Test 2: the bug in test 1, fixed (written before running, 2026-11-23)
 
 Test 1 recalled nothing, and that was a bug in how I wrote the weight, found on
