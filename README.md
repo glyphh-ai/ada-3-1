@@ -71,3 +71,8 @@ Models are read from the Hugging Face cache
 | `reports/` | prior-art search (what is and is not new) |
 | `history/opengpt-research/` | how the idea got here, on the small numpy GPT |
 | `data/` | zsRE files used by the tests |
+
+
+## License
+
+Apache-2.0. See LICENSE and NOTICE. Copyright 2026 Chris Timmerman / Glyphh AI LLC. More about it: https://glyphh.ai/projects/ada-3-1
